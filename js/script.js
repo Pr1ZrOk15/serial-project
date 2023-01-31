@@ -120,7 +120,7 @@ class MenuCard {
 new MenuCard(
   "img/tabs/1.png",
   "vegy",
-  'Plan "Usual"',
+  "Plan “Usual”",
   "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit nesciunt facere, sequi exercitationem praesentium ab cupiditate beatae debitis perspiciatis itaque quaerat id modi corporis delectus ratione nobis harum voluptatum in.",
   10,
   ".menu .container"
@@ -138,7 +138,7 @@ new MenuCard(
 new MenuCard(
   "img/tabs/3.jpg",
   "post",
-  'Plan "VIP"',
+  "Plan “VIP”",
   "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus natus nobis minus corporis atque enim vitae, modi eligendi commodi itaque voluptatum ipsum. Nemo reiciendis, id rem dolorum rerum consequuntur eos.",
   20,
   ".menu .container"
@@ -206,14 +206,26 @@ prevBtn.addEventListener("click", () => {
 // Forms
 const forms = document.querySelectorAll("form");
 forms.forEach((item) => {
-  postData(item);
+  bindPostData(item);
 });
 const msg = {
   loading: "loading...",
   sucsess: "So'rovingiz muvofaqiyatli yuborildi !",
-  failure: "So'rov yuborilmoqda",
+  failure: "Nimadir Xato ketdi !",
 };
-function postData(form) {
+
+async function postData(url, data) {
+  const res = await fetch(url, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: data,
+  });
+  return await res.json();
+}
+
+function bindPostData(form) {
   form.addEventListener("submit", (e) => {
     e.preventDefault();
 
@@ -232,13 +244,7 @@ function postData(form) {
       obj[key] = val;
     });
 
-    fetch("server.php", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(obj),
-    })
+    postData("http://localhost:3000/response", JSON.stringify(obj))
       .then((data) => data.text())
       .then((data) => {
         showThangsModal(msg.sucsess);
@@ -331,3 +337,7 @@ function showThangsModal(massage) {
 // fetch("https://jsonplaceholder.typicode.com/posts")
 //   .then((response) => response.json())
 //   .then((data) => console.log(data));
+
+fetch("http://localhost:3000/menu")
+  .then((response) => response)
+  .then((data) => console.log(data));
