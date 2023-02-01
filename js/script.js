@@ -117,32 +117,22 @@ class MenuCard {
   }
 }
 
-new MenuCard(
-  "img/tabs/1.png",
-  "vegy",
-  "Plan “Usual”",
-  "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit nesciunt facere, sequi exercitationem praesentium ab cupiditate beatae debitis perspiciatis itaque quaerat id modi corporis delectus ratione nobis harum voluptatum in.",
-  10,
-  ".menu .container"
-).render();
+axios.get("http://localhost:3000/menu").then((data) => {
+  data.data.forEach(({ img, alt, title, descr, price }) => {
+    new MenuCard(img, alt, title, descr, price, ".menu .container").render();
+  });
+});
 
-new MenuCard(
-  "img/tabs/2.jpg",
-  "elite",
-  "Plan “Premium”",
-  "Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque aliquid molestiae, sit eveniet, tempora ipsum quaerat recusandae sapiente doloremque corporis dolores quas consectetur ut labore distinctio libero reiciendis harum sequi?,",
-  15,
-  ".menu .container"
-).render();
-
-new MenuCard(
-  "img/tabs/3.jpg",
-  "post",
-  "Plan “VIP”",
-  "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Voluptatibus natus nobis minus corporis atque enim vitae, modi eligendi commodi itaque voluptatum ipsum. Nemo reiciendis, id rem dolorum rerum consequuntur eos.",
-  20,
-  ".menu .container"
-).render();
+// async function getResourse(url) {
+//   const res = await fetch(url);
+//   return await res.json();
+// }
+// getResourse("http://localhost:3000/menu").then((data) => {
+//   console.log(data);
+//   data.forEach(({ img, alt, title, descr, price }) => {
+//     new MenuCard(img, alt, title, descr, price, ".menu .container").render();
+//   });
+// });
 
 // Slider
 const sliderContainer = document.querySelector(".slider-container"),
@@ -238,14 +228,9 @@ function bindPostData(form) {
 
     const formData = new FormData(form);
 
-    const obj = {};
+    const json = JSON.stringify(Object.fromEntries(formData.entries()));
 
-    formData.forEach((val, key) => {
-      obj[key] = val;
-    });
-
-    postData("http://localhost:3000/response", JSON.stringify(obj))
-      .then((data) => data.text())
+    postData("http://localhost:3000/response", json)
       .then((data) => {
         showThangsModal(msg.sucsess);
       })
@@ -285,7 +270,6 @@ function bindPostData(form) {
     // });
   });
 }
-
 // showThangsModal
 
 function showThangsModal(massage) {
@@ -337,7 +321,3 @@ function showThangsModal(massage) {
 // fetch("https://jsonplaceholder.typicode.com/posts")
 //   .then((response) => response.json())
 //   .then((data) => console.log(data));
-
-fetch("http://localhost:3000/menu")
-  .then((response) => response)
-  .then((data) => console.log(data));

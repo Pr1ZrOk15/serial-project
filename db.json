@@ -5,24 +5,21 @@
       "alt": "usual",
       "title": "Plan 'Usual'",
       "descr": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit nesciunt facere, sequi exercitationem praesentium ab cupiditate beatae debitis perspiciatis itaque quaerat id modi corporis delectus ratione nobis harum voluptatum in.",
-      "price": 10,
-      "parentElement": ".menu .container"
+      "price": 10
     },
     {
       "img": "img/tabs/2.jpg",
       "alt": "elite",
       "title": "Plan “Premium”",
       "descr": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit nesciunt facere, sequi exercitationem praesentium ab cupiditate beatae debitis perspiciatis itaque quaerat id modi corporis delectus ratione nobis harum voluptatum in.",
-      "price": 20,
-      "parentElement": ".menu .container"
+      "price": 20
     },
     {
-      "img": "img/tabs/3.png",
+      "img": "img/tabs/3.jpg",
       "alt": "post",
       "title": "Plan “VIP”",
       "descr": "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Fugit nesciunt facere, sequi exercitationem praesentium ab cupiditate beatae debitis perspiciatis itaque quaerat id modi corporis delectus ratione nobis harum voluptatum in.",
-      "price": 30,
-      "parentElement": ".menu .container"
+      "price": 30
     }
   ],
   "response": [
@@ -58,8 +55,13 @@
     },
     {
       "name": "Jo'rayev sardor",
-      "phone": "sdasd",
+      "phone": "+998 99 168 77 43",
       "id": 7
+    },
+    {
+      "name": "Jo'rayev sardor",
+      "phone": "+998 99 168 77 43",
+      "id": 8
     }
   ]
 }
